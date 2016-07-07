@@ -14,49 +14,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Schüttel das Gerät um eine zufällige Nachricht zu empfangen!"
-            android:id="@+id/textView_flick" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Letzte Nachricht:"
-            android:id="@+id/textView_last"
-            android:layout_marginTop="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Schüttel das Gerät um eine zufällige Nachricht zu empfangen!"
+                android:id="@+id/textView_flick"
+                android:textColor="#000000" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView_lastMessage" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Letzte Nachricht:"
+                android:id="@+id/textView_last"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView_lastMessage"
+                android:maxLines="5"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView_save"
+                android:textColor="#000000" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Gespeicherte zeigen"
-                android:id="@+id/button"
+                android:text="Gespeicherte"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="20dp" />
+                android:layout_weight="0.5"
+                android:id="@+id/btn_showList" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Poste eigene Nachricht"
-                android:id="@+id/button2"
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="bottom" />
+                android:text="Poste Nachricht"
+                android:id="@+id/btn_postMsg"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.5" />
         </LinearLayout>
-
     </LinearLayout>
 </RelativeLayout>
