@@ -23,15 +23,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Schüttel das Gerät um eine zufällige Nachricht zu empfangen!"
                 android:id="@+id/textView_flick"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:text="@string/shake_instructions" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Letzte Nachricht:"
+                android:text="@string/last_message"
                 android:id="@+id/textView_last"
                 android:layout_marginTop="20dp" />
 
@@ -62,7 +62,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Gespeicherte"
+                android:text="@string/saved_button"
                 android:layout_gravity="bottom"
                 android:layout_weight="0.5"
                 android:id="@+id/btn_showList" />
@@ -70,7 +70,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Poste Nachricht"
+                android:text="@string/post_button"
                 android:id="@+id/btn_postMsg"
                 android:layout_gravity="bottom"
                 android:layout_weight="0.5" />

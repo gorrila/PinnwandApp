@@ -9,9 +9,8 @@ import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,7 +26,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
@@ -71,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
             sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }else{
-            Toast toast = Toast.makeText(getApplicationContext(), "No light sensor on this phone", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_no_lightsensor), Toast.LENGTH_SHORT);
             toast.show();
         }
 
@@ -106,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 if(networkInfo != null && networkInfo.isConnected()){
                     new GetMessageTask().execute();
                 }else{
-                    Toast toast = Toast.makeText(getApplicationContext(), "Kein Internet", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_no_internet), Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 last_time = System.nanoTime();
@@ -115,17 +112,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float light = sensorEvent.values[0];
 
             if(light <= 40f){
-                Toast toast = Toast.makeText(getApplicationContext(), "Light = 0", Toast.LENGTH_SHORT);
-                toast.show();
+                //Toast toast = Toast.makeText(getApplicationContext(), "Light = 0", Toast.LENGTH_SHORT);
+                //toast.show();
+
                 //Save new message
                 MessagesDB db = new MessagesDB(getApplicationContext());
                 try {
                     if(!db.isIdInTable(current_message.get("_id").toString())){
                         db.insertMessage(current_message.get("msg").toString(), current_message.get("_id").toString());
-                        toast = Toast.makeText(getApplicationContext(), "Nachricht gespeichert.", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_saved_message), Toast.LENGTH_SHORT);
                         toast.show();
                     }else{
-                        toast = Toast.makeText(getApplicationContext(), "Nachricht schon in DB.", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_message_exists), Toast.LENGTH_SHORT);
                         toast.show();
                     }
                 } catch (JSONException e) {
@@ -198,10 +196,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             try {
                 tv_message.setText(json.getString("msg"));
-                tv_save.setText("Halte den Lichtsensor zu um die Nachricht zu speichern!");
+                tv_save.setText(getResources().getString(R.string.save_instructions));
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast toast = Toast.makeText(getApplicationContext(), "Malformed JSON", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_malformed_json), Toast.LENGTH_SHORT);
                 toast.show();
             }
         }

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Hier kannst du eine eigene Nachricht an den Server posten"
+            android:text="@string/post_instructions"
             android:id="@+id/textView" />
 
         <EditText
@@ -29,7 +29,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send Message"
+            android:text="@string/button_post_message"
             android:id="@+id/button_sendMessage" />
     </LinearLayout>
 

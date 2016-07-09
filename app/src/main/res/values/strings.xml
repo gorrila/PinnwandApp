@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Pinnwand App</string>
+    <string name="last_message">Letzte Nachricht:</string>
+    <string name="shake_instructions">Schüttel das Gerät um eine zufällige Nachricht zu empfangen!</string>
+    <string name="saved_button">Gespeicherte</string>
+    <string name="post_button">Poste Nachricht</string>
+    <string name="save_instructions">Halte den Lichtsensor zu um die Nachricht zu speichern!</string>
+    <string name="toast_saved_message">Nachricht gespeichert</string>
+    <string name="toast_message_exists">Nachricht schon in DB</string>
+    <string name="toast_no_internet">Keine Internet-Verbindung</string>
+    <string name="toast_no_lightsensor">Das Gerät hat keinen Lichtsensor</string>
+    <string name="toast_malformed_json">Ungültiges JSON</string>
+    <string name="toast_empty_db">Die Datenbank ist leer</string>
+    <string name="toast_invalid_message">Ungültige Nachricht</string>
+    <string name="post_instructions">Hier kannst du eine eigene Nachricht an den Server posten</string>
+    <string name="button_post_message">Senden</string>
+    <string name="toast_post_successfull">Nachricht erfolgreich gepostet</string>
 </resources>

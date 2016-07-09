@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Bulletin App</string>
+    <string name="last_message">Last message:</string>
+    <string name="saved_button">Saved messages</string>
+    <string name="shake_instructions">Shake your device to receive a random message!</string>
+    <string name="post_button">Post message</string>
+    <string name="save_instructions">Cover your light sensor to save the message!</string>
+    <string name="button_post_message">Send</string>
+    <string name="toast_empty_db">Database is empty</string>
+    <string name="toast_invalid_message">Invalid message</string>
+    <string name="toast_malformed_json">Malformed JSON</string>
+    <string name="toast_message_exists">Message already exists in DB</string>
+    <string name="toast_no_internet">No Internet-Connection</string>
+    <string name="toast_no_lightsensor">Device has no lightsensor</string>
+    <string name="toast_saved_message">Message saved</string>
+    <string name="post_instructions">Post your own message here</string>
+    <string name="toast_post_successfull">Message successfully posted</string>
+</resources>
