@@ -2,6 +2,9 @@ package sb.pinnwandapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -149,6 +152,31 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onResume();
         sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+        TextView tv_message = (TextView) findViewById(R.id.textView_lastMessage);
+        TextView tv_save = (TextView) findViewById(R.id.textView_save);
+        TextView tv_flick = (TextView) findViewById(R.id.textView_flick);
+        TextView tv_last = (TextView) findViewById(R.id.textView_last);
+
+        View view = this.getWindow().getDecorView();
+        int color = 0;
+        Drawable background = view.getBackground();
+        if(background instanceof ColorDrawable){
+            color = ((ColorDrawable) background).getColor();
+            if(color == Color.WHITE){
+                view.setBackgroundColor(Color.GRAY);
+                tv_message.setTextColor(Color.YELLOW);
+                tv_save.setTextColor(Color.YELLOW);
+                tv_flick.setTextColor(Color.YELLOW);
+                tv_last.setTextColor(Color.YELLOW);
+            }else{
+                view.setBackgroundColor(Color.WHITE);
+                tv_message.setTextColor(Color.BLACK);
+                tv_save.setTextColor(Color.BLACK);
+                tv_flick.setTextColor(Color.BLACK);
+                tv_last.setTextColor(Color.BLACK);
+            }
+        }
     }
 
     public class GetMessageTask extends AsyncTask<Void, Void, JSONObject> {

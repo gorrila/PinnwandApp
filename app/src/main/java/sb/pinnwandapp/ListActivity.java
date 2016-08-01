@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -19,24 +20,12 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        ListView lv = (ListView) findViewById(R.id.listView_messages);
-        //get all messages from db
+        final ListView lv = (ListView) findViewById(R.id.listView_messages);
         final MessagesDB db = new MessagesDB(getApplicationContext());
 
         final ArrayList<String[]> messages = new ArrayList<>();
         Cursor cursor = db.getAllMessages();
-        if (cursor.getCount() == 0){
-            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_empty_db), Toast.LENGTH_SHORT);
-            toast.show();
-        }else {
-            try {
-                while (cursor.moveToNext()) {
-                    messages.add(new String[]{cursor.getString(0), cursor.getString(2)});
-                }
-            } finally {
-                cursor.close();
-            }
-        }
+        setListItems(lv, cursor, messages);
 
         final MessageAdapter adapter = new MessageAdapter(getApplicationContext(), messages);
 
@@ -59,18 +48,7 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View V){
                 messages.clear();
                 Cursor cursor = db.getAllMessages("serverId ASC");
-                if (cursor.getCount() == 0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Leere DB", Toast.LENGTH_SHORT);
-                    toast.show();
-                }else {
-                    try {
-                        while (cursor.moveToNext()) {
-                            messages.add(new String[]{cursor.getString(0), cursor.getString(2)});
-                        }
-                    } finally {
-                        cursor.close();
-                    }
-                }
+                setListItems(lv, cursor, messages);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -80,18 +58,7 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View V){
                 messages.clear();
                 Cursor cursor = db.getAllMessages("Timestamp ASC");
-                if (cursor.getCount() == 0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Leere DB", Toast.LENGTH_SHORT);
-                    toast.show();
-                }else {
-                    try {
-                        while (cursor.moveToNext()) {
-                            messages.add(new String[]{cursor.getString(0), cursor.getString(2)});
-                        }
-                    } finally {
-                        cursor.close();
-                    }
-                }
+                setListItems(lv, cursor, messages);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -100,21 +67,28 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View V){
                 messages.clear();
-                Cursor cursor = db.getAllMessages("serverId ASC");
-                if (cursor.getCount() == 0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Leere DB", Toast.LENGTH_SHORT);
-                    toast.show();
-                }else {
-                    try {
-                        while (cursor.moveToNext()) {
-                            messages.add(new String[]{cursor.getString(0), cursor.getString(2)});
-                        }
-                    } finally {
-                        cursor.close();
-                    }
-                }
+                Cursor cursor = db.getAllMessages("LOWER(message) ASC");
+                setListItems(lv, cursor, messages);
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void setListItems(ListView lv, Cursor cursor, ArrayList<String[]> messages){
+        if (cursor.getCount() == 0){
+            Toast toast = Toast.makeText(getApplicationContext(), "Leere DB", Toast.LENGTH_SHORT);
+            toast.show();
+        }else {
+            try {
+                if(cursor.getCount() != 0) {
+                    messages.add(new String[]{cursor.getString(1), cursor.getString(2)});
+                    while (cursor.moveToNext()) {
+                        messages.add(new String[]{cursor.getString(1), cursor.getString(2)});
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
     }
 }
